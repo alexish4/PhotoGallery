@@ -2,6 +2,8 @@ package com.bignerdranch.android.photogallery
 
 import android.content.Context
 import android.preference.PreferenceManager
+import android.provider.Settings.Global.putString
+import androidx.core.content.edit
 
 private const val PREF_SEARCH_QUERY = "searchQuery"
 
@@ -14,9 +16,9 @@ object QueryPreferences {
 
     fun setStoredQuery(context: Context, query: String) {
         PreferenceManager.getDefaultSharedPreferences(context)
-            .edit()
-            .putString(PREF_SEARCH_QUERY, query)
-            .apply()
+            .edit {
+                putString(PREF_SEARCH_QUERY, query)
+            }
     }
 
 }
